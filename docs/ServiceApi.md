@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**ServiceBrokerDelete**](ServiceApi.md#ServiceBrokerDelete) | **Delete** /1.7/brokers/{name} | 
 [**ServiceBrokerList**](ServiceApi.md#ServiceBrokerList) | **Get** /1.7/brokers | 
 [**ServiceBrokerUpdate**](ServiceApi.md#ServiceBrokerUpdate) | **Put** /1.7/brokers/{name} | 
+[**ServiceInstanceCreate**](ServiceApi.md#ServiceInstanceCreate) | **Post** /1.0/services/{service}/instances | 
 [**ServicesList**](ServiceApi.md#ServicesList) | **Get** /1.0/services | 
 
 
@@ -252,6 +253,47 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ServiceInstanceCreate**
+> ServiceInstanceCreate(ctx, service, optional)
+
+
+Create a service instance
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **service** | **string**| Service name. | 
+ **optional** | ***ServiceInstanceCreateOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a ServiceInstanceCreateOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **name** | **optional.String**|  | 
+ **plan** | **optional.String**|  | 
+ **description** | **optional.String**|  | 
+ **owner** | **optional.String**|  | 
+ **tags** | [**optional.Interface of []string**](string.md)|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

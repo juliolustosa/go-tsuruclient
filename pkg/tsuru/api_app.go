@@ -31,10 +31,10 @@ type AppApiService service
 AppApiService
 Create a new app.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param app
+ * @param appCreateData
 @return AppCreateResponse
 */
-func (a *AppApiService) AppCreate(ctx context.Context, app App) (AppCreateResponse, *http.Response, error) {
+func (a *AppApiService) AppCreate(ctx context.Context, appCreateData AppCreateData) (AppCreateResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod   = strings.ToUpper("Post")
 		localVarPostBody     interface{}
@@ -69,7 +69,7 @@ func (a *AppApiService) AppCreate(ctx context.Context, app App) (AppCreateRespon
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	localVarPostBody = &app
+	localVarPostBody = &appCreateData
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -960,8 +960,9 @@ AppApiService
 Update a tsuru app.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param app App name.
+ * @param appUpdateData
 */
-func (a *AppApiService) AppUpdate(ctx context.Context, app string) (*http.Response, error) {
+func (a *AppApiService) AppUpdate(ctx context.Context, app string, appUpdateData AppUpdateData) (*http.Response, error) {
 	var (
 		localVarHttpMethod   = strings.ToUpper("Put")
 		localVarPostBody     interface{}
@@ -982,7 +983,7 @@ func (a *AppApiService) AppUpdate(ctx context.Context, app string) (*http.Respon
 	}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{}
+	localVarHttpContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -991,13 +992,15 @@ func (a *AppApiService) AppUpdate(ctx context.Context, app string) (*http.Respon
 	}
 
 	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{"application/x-json-stream"}
+	localVarHttpHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
+	// body params
+	localVarPostBody = &appUpdateData
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {

@@ -58,6 +58,56 @@ paths:
       - Bearer: []
       tags:
       - service
+  /1.0/services/{service}/instances:
+    post:
+      description: Create a service instance
+      operationId: ServiceInstanceCreate
+      parameters:
+      - description: Service name.
+        in: path
+        name: service
+        required: true
+        schema:
+          minLength: 1
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ServiceInstanceCreateData'
+        required: true
+      responses:
+        201:
+          content: {}
+          description: Service instance created
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Invalid data
+        401:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Quota exceeded
+        409:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: App already exists
+      security:
+      - Bearer: []
+      tags:
+      - service
   /1.0/services/{service}/instances/{instance}:
     delete:
       description: Remove service instance
@@ -419,7 +469,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/App'
+              $ref: '#/components/schemas/AppCreateData'
         required: true
       responses:
         201:
@@ -533,25 +583,31 @@ paths:
         schema:
           minLength: 1
           type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppUpdateData'
+        required: true
       responses:
         200:
           content: {}
           description: App updated
         400:
           content:
-            application/x-json-stream:
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Invalid data
         401:
           content:
-            application/x-json-stream:
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Unauthorized
         404:
           content:
-            application/x-json-stream:
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Not found
@@ -3851,6 +3907,38 @@ components:
           description: Volume plan opts.
           type: object
       type: object
+    AppUpdateData:
+      example:
+        teamOwner: teamOwner
+        pool: pool
+        description: description
+        plan: plan
+        platform: platform
+        tags:
+        - tags
+        - tags
+      properties:
+        tags:
+          description: App tags.
+          items:
+            type: string
+          type: array
+        plan:
+          description: App plan name.
+          type: string
+        pool:
+          description: App pool name.
+          type: string
+        platform:
+          description: App platform.
+          type: string
+        description:
+          description: App description.
+          type: string
+        teamOwner:
+          description: Team that owns the app.
+          type: string
+      type: object
     ServiceBrokerList:
       example:
         brokers:
@@ -4048,6 +4136,55 @@ components:
           type: string
         contextvalue:
           type: string
+      type: object
+    AppCreateData:
+      example:
+        teamOwner: teamOwner
+        router: router
+        name: name
+        pool: pool
+        routeropts:
+          key: routeropts
+        description: description
+        plan: plan
+        platform: platform
+        tags:
+        - tags
+        - tags
+      properties:
+        name:
+          description: App name.
+          type: string
+        tags:
+          description: App tags.
+          items:
+            type: string
+          type: array
+        router:
+          description: App router name.
+          type: string
+        routeropts:
+          additionalProperties:
+            type: string
+          description: Custom router options.
+          type: object
+        plan:
+          description: App plan name.
+          type: string
+        pool:
+          description: App pool name.
+          type: string
+        platform:
+          description: App platform.
+          type: string
+        description:
+          description: App description.
+          type: string
+        teamOwner:
+          description: Team that owns the app.
+          type: string
+      required:
+      - name
       type: object
     Team:
       example:
@@ -4405,6 +4542,21 @@ components:
           type: string
         acquireDate:
           type: string
+      type: object
+    ServiceInstanceCreateData:
+      properties:
+        name:
+          type: string
+        plan:
+          type: string
+        description:
+          type: string
+        owner:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     EventCancelArgs:
       example:

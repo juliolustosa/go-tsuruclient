@@ -84,6 +84,7 @@ Class | Method | HTTP request | Description
 *ServiceApi* | [**ServiceBrokerDelete**](docs/ServiceApi.md#servicebrokerdelete) | **Delete** /1.7/brokers/{name} | 
 *ServiceApi* | [**ServiceBrokerList**](docs/ServiceApi.md#servicebrokerlist) | **Get** /1.7/brokers | 
 *ServiceApi* | [**ServiceBrokerUpdate**](docs/ServiceApi.md#servicebrokerupdate) | **Put** /1.7/brokers/{name} | 
+*ServiceApi* | [**ServiceInstanceCreate**](docs/ServiceApi.md#serviceinstancecreate) | **Post** /1.0/services/{service}/instances | 
 *ServiceApi* | [**ServicesList**](docs/ServiceApi.md#serviceslist) | **Get** /1.0/services | 
 *TeamApi* | [**TeamCreate**](docs/TeamApi.md#teamcreate) | **Post** /1.0/teams | 
 *TeamApi* | [**TeamDelete**](docs/TeamApi.md#teamdelete) | **Delete** /1.0/teams/{team} | 
@@ -116,7 +117,9 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [App](docs/App.md)
+ - [AppCreateData](docs/AppCreateData.md)
  - [AppCreateResponse](docs/AppCreateResponse.md)
+ - [AppUpdateData](docs/AppUpdateData.md)
  - [AssignTokenArgs](docs/AssignTokenArgs.md)
  - [ChangePasswordData](docs/ChangePasswordData.md)
  - [Cluster](docs/Cluster.md)
@@ -156,6 +159,7 @@ Class | Method | HTTP request | Description
  - [ServiceBrokerList](docs/ServiceBrokerList.md)
  - [ServiceInstance](docs/ServiceInstance.md)
  - [ServiceInstanceBoundUnit](docs/ServiceInstanceBoundUnit.md)
+ - [ServiceInstanceCreateData](docs/ServiceInstanceCreateData.md)
  - [ServiceInstanceInfo](docs/ServiceInstanceInfo.md)
  - [ServiceInstanceUpdateData](docs/ServiceInstanceUpdateData.md)
  - [SshKeyAddData](docs/SshKeyAddData.md)
